@@ -1,0 +1,139 @@
+[gd_scene load_steps=11 format=3 uid="uid://cef7paocu7ehx"]
+
+[ext_resource type="FontFile" uid="uid://crrbwbevf4mud" path="res://PixelOperator8.ttf" id="1_dhyqi"]
+[ext_resource type="Script" uid="uid://dwlx5h8nyajk7" path="res://questions_reponses.gd" id="1_ghnf6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ghnf6"]
+paragraph_spacing = 7.0
+font = ExtResource("1_dhyqi")
+font_size = 30
+
+[sub_resource type="Gradient" id="Gradient_dhyqi"]
+colors = PackedColorArray(0.521569, 0.403922, 0.152941, 1, 0.521569, 0.403922, 0.152941, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ghnf6"]
+gradient = SubResource("Gradient_dhyqi")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y6vyn"]
+size = Vector2(226, 57)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dhyqi"]
+font = ExtResource("1_dhyqi")
+font_size = 35
+
+[sub_resource type="LabelSettings" id="LabelSettings_y6vyn"]
+font = ExtResource("1_dhyqi")
+font_size = 35
+
+[sub_resource type="LabelSettings" id="LabelSettings_pf2jf"]
+font = ExtResource("1_dhyqi")
+font_size = 35
+
+[sub_resource type="LabelSettings" id="LabelSettings_ekdbj"]
+font = ExtResource("1_dhyqi")
+font_size = 35
+
+[node name="questions_reponses" type="Node2D"]
+script = ExtResource("1_ghnf6")
+
+[node name="question" type="Label" parent="."]
+offset_left = 108.0
+offset_top = 55.0
+offset_right = 1001.0
+offset_bottom = 321.0
+text = "QUE VA AFFICHER CE CODE PYTHON ?
+
+X = '123'
+Y = '321'
+Z = X + Y
+print(Z)"
+label_settings = SubResource("LabelSettings_ghnf6")
+
+[node name="reponse" type="Area2D" parent="."]
+position = Vector2(-35, -32)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="reponse"]
+position = Vector2(174.5, 422.125)
+scale = Vector2(0.878906, 56.25)
+texture = SubResource("GradientTexture1D_ghnf6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="reponse"]
+position = Vector2(175, 422.5)
+shape = SubResource("RectangleShape2D_y6vyn")
+
+[node name="Label" type="Label" parent="reponse"]
+offset_left = 101.0
+offset_top = 405.0
+offset_right = 286.0
+offset_bottom = 446.0
+text = "'444'"
+label_settings = SubResource("LabelSettings_dhyqi")
+
+[node name="reponse2" type="Area2D" parent="."]
+position = Vector2(270, -34)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="reponse2"]
+position = Vector2(164.5, 426)
+scale = Vector2(0.878906, 58)
+texture = SubResource("GradientTexture1D_ghnf6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="reponse2"]
+position = Vector2(164.5, 426)
+shape = SubResource("RectangleShape2D_y6vyn")
+
+[node name="Label" type="Label" parent="reponse2"]
+offset_left = 110.0
+offset_top = 409.0
+offset_right = 235.0
+offset_bottom = 450.0
+text = "444"
+label_settings = SubResource("LabelSettings_y6vyn")
+
+[node name="reponse3" type="Area2D" parent="."]
+position = Vector2(557, -34)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="reponse3"]
+position = Vector2(164.5, 426)
+scale = Vector2(0.878906, 56)
+texture = SubResource("GradientTexture1D_ghnf6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="reponse3"]
+position = Vector2(164.5, 426)
+shape = SubResource("RectangleShape2D_y6vyn")
+
+[node name="Label" type="Label" parent="reponse3"]
+offset_left = 49.0
+offset_top = 407.0
+offset_right = 277.0
+offset_bottom = 463.0
+text = "'123321'"
+label_settings = SubResource("LabelSettings_pf2jf")
+
+[node name="reponse4" type="Area2D" parent="."]
+position = Vector2(840, -37)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="reponse4"]
+position = Vector2(164.5, 426)
+scale = Vector2(0.878906, 56)
+texture = SubResource("GradientTexture1D_ghnf6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="reponse4"]
+position = Vector2(164.5, 426)
+shape = SubResource("RectangleShape2D_y6vyn")
+
+[node name="Label" type="Label" parent="reponse4"]
+offset_left = 73.0
+offset_top = 407.0
+offset_right = 275.0
+offset_bottom = 443.0
+text = "ERREUR "
+label_settings = SubResource("LabelSettings_ekdbj")
+
+[connection signal="body_entered" from="reponse" to="." method="_on_reponse_body_entered"]
+[connection signal="body_entered" from="reponse2" to="." method="_on_reponse_2_body_entered"]
+[connection signal="body_entered" from="reponse3" to="." method="_on_reponse_3_body_entered"]
+[connection signal="body_entered" from="reponse4" to="." method="_on_reponse_4_body_entered"]

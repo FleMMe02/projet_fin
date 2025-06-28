@@ -1,0 +1,124 @@
+[gd_scene load_steps=14 format=3 uid="uid://dsv4auagvwan8"]
+
+[ext_resource type="Script" uid="uid://cm5bufh2t30kr" path="res://level.gd" id="1_f2txt"]
+[ext_resource type="PackedScene" uid="uid://w62he6agoyy2" path="res://perso.tscn" id="1_u52ul"]
+[ext_resource type="Texture2D" uid="uid://dgsvsphngbdix" path="res://espace.png" id="1_vonw3"]
+[ext_resource type="PackedScene" uid="uid://cef7paocu7ehx" path="res://questions_reponses.tscn" id="3_oi3di"]
+[ext_resource type="PackedScene" uid="uid://c0xa2tka25vsw" path="res://pause_menu.tscn" id="4_0b4ue"]
+[ext_resource type="PackedScene" uid="uid://c4jpltkon18n2" path="res://game_over.tscn" id="6_n6hdu"]
+[ext_resource type="FontFile" uid="uid://crrbwbevf4mud" path="res://PixelOperator8.ttf" id="7_km5ld"]
+[ext_resource type="PackedScene" uid="uid://3gshjhglk0vs" path="res://win.tscn" id="8_km5ld"]
+
+[sub_resource type="Gradient" id="Gradient_vonw3"]
+colors = PackedColorArray(0.99558, 0.99558, 0.99558, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_oi3di"]
+gradient = SubResource("Gradient_vonw3")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0b4ue"]
+size = Vector2(1171, 126.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_n6hdu"]
+font = ExtResource("7_km5ld")
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_i2t4f"]
+font = ExtResource("7_km5ld")
+font_size = 20
+
+[node name="level1" type="Node2D"]
+script = ExtResource("1_f2txt")
+
+[node name="PauseMenu" parent="." instance=ExtResource("4_0b4ue")]
+process_mode = 3
+visible = false
+
+[node name="background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_vonw3")
+stretch_mode = 1
+
+[node name="perso" parent="." instance=ExtResource("1_u52ul")]
+position = Vector2(341, 344)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+position = Vector2(575.5, 589)
+scale = Vector2(4.51953, 124)
+texture = SubResource("GradientTexture1D_oi3di")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(577.5, 588.25)
+shape = SubResource("RectangleShape2D_0b4ue")
+
+[node name="mur" type="StaticBody2D" parent="."]
+position = Vector2(1807, -375)
+rotation = 1.5708
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="mur"]
+position = Vector2(575.5, 589)
+scale = Vector2(4.51953, 124)
+texture = SubResource("GradientTexture1D_oi3di")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mur"]
+position = Vector2(577.5, 588.25)
+shape = SubResource("RectangleShape2D_0b4ue")
+
+[node name="mur2" type="StaticBody2D" parent="."]
+position = Vector2(-646, -286)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="mur2"]
+position = Vector2(575.5, 589)
+rotation = 1.5708
+scale = Vector2(4.51953, 124)
+texture = SubResource("GradientTexture1D_oi3di")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mur2"]
+position = Vector2(577.5, 588.25)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_0b4ue")
+
+[node name="questions_reponses" parent="." instance=ExtResource("3_oi3di")]
+position = Vector2(9, 0)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Label" type="Label" parent="Timer"]
+offset_left = 964.0
+offset_top = 19.0
+offset_right = 1037.0
+offset_bottom = 42.0
+text = "temps:"
+label_settings = SubResource("LabelSettings_n6hdu")
+
+[node name="lifeUI" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="lifeUI"]
+offset_left = 11.0
+offset_top = 10.0
+offset_right = 152.0
+offset_bottom = 53.0
+text = "vie = "
+label_settings = SubResource("LabelSettings_i2t4f")
+
+[node name="game_over" parent="." instance=ExtResource("6_n6hdu")]
+visible = false
+
+[node name="win" parent="." instance=ExtResource("8_km5ld")]
+visible = false
+
+[connection signal="get_damaged" from="perso" to="." method="perso_damage"]
+[connection signal="b_r" from="questions_reponses" to="." method="win"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

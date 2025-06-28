@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0xa2tka25vsw"]
+
+[ext_resource type="FontFile" uid="uid://crrbwbevf4mud" path="res://PixelOperator8.ttf" id="1_hdmo1"]
+[ext_resource type="Script" uid="uid://ddqlju0ty20ug" path="res://pause_menu.gd" id="1_nwcfo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nwcfo"]
+font = ExtResource("1_hdmo1")
+font_size = 35
+
+[node name="PauseMenu" type="CanvasLayer"]
+script = ExtResource("1_nwcfo")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.5
+offset_top = -12.0
+offset_right = 52.5
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PAUSE"
+label_settings = SubResource("LabelSettings_nwcfo")
